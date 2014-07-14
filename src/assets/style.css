@@ -1,0 +1,16 @@
+body{
+	background-color: #6495ED;
+}
+
+#fbimg {
+	position:center;
+	left:50%;
+	top:50%;
+	margin-left:-120px;
+	margin-top:-57px;
+	}
+
+.center {
+float: none;
+.center-block();
+}

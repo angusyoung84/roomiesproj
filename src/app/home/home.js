@@ -17,11 +17,9 @@ angular.module( 'ngBoilerplate.home', [
   'plusOne'
 ])
 
-/**
- * Each section or module of the site can also have its own routes. AngularJS
- * will handle ensuring they are all available at run-time, but splitting it
- * this way makes each module more "self-contained".
- */
+
+
+
 .config(function config( $stateProvider ) {
   $stateProvider.state( 'home', {
     url: '/home',
@@ -35,11 +33,37 @@ angular.module( 'ngBoilerplate.home', [
   });
 })
 
-/**
- * And of course we define a controller for our route.
- */
-.controller( 'HomeCtrl', function HomeController( $scope ) {
-})
+.controller( 'HomeCtrl', function HomeController( $scope, $rootScope, $firebase) {
 
-;
+
+
+  //var userRef = new Firebase('https://boiling-fire-6744.firebaseio.com/users').child($rootScope.user.id);
+  //$scope.user = $firebase(userRef);
+  
+  var done = $rootScope.$watch('user.id', function(id) {
+    if (id) {
+      $scope.user = $firebase(new Firebase('https://boiling-fire-6744.firebaseio.com//users/'+$rootScope.user.id+'/'));
+      done();
+    }
+  });  
+
+  $scope.logout=function(){
+  console.log('logout biatch');
+  $rootScope.auth.$logout();      
+    
+
+
+
+
+  };
+
+
+}
+
+);
+
+
+
+
+
 
