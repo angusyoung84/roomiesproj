@@ -15,31 +15,29 @@
 <br/>
 <br/>
 
-
 <p align="center"><img ng-src="{{ user.picture.data.url }}" /></p>
 
-<p><a href="#" ui-sref="group">Add people to your group</a></p>
+<button ng-click="sayHello()">Click </button>
 
-<p><a href="#" ui-sref="addgroup">Add a group</a></p>
+<h2 align="center">Hello {{user.first_name}}, please add people to your dashboard.</h2>
+  
+<p><a href="#" ui-sref="home">Home</a></p>
 
-<p><a href="#" ui-sref="bill">Add a bill</a></p>
-
-<h2 align="center">Hello {{user.first_name}}, this is your dashboard.</h2>
-<ul class="list-group" ng-repeat="people in usersGroup">
+<ul class="list-group" style="width=50%" ng-repeat="item in items" ng-if="item.id != user.id">
   <li class="list-group-item">
-    <img ng-src="{{ people.info.url }}" />
-    {{people.name}}
+    <img ng-src="{{ item.picture.data.url }}" />
+    {{item.first_name}} {{item.last_name}}
 
     <em class="pull-right">
       <div class="btn-group">
-        <button ng-click="delItem(item)" class="btn btn-primary">Delete</button>
+        <button ng-click="addItem(item)" class="btn btn-primary">Add</button>
       </div>
     </em>
   </li>
 
 
 </ul>
-  
+
+
 
 <p><a href="#" ng-click="logout()">logout</a></p>
-

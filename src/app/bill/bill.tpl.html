@@ -1,0 +1,60 @@
+<br/>
+<br/>
+<br/>
+
+<p align="center"><img ng-src="{{ user.picture.data.url }}" /></p>
+
+
+
+<h2 align="center">Hello {{user.first_name}}, please add people to your dashboard.</h2>
+  
+<p><a href="#" ui-sref="home">Home</a></p>
+
+<ul class="list-group" style="width=50%" ng-repeat="item in items" ng-if="item.id != user.id">
+  <li class="list-group-item">
+    <img ng-src="{{ item.picture.data.url }}" />
+    {{item.first_name}} {{item.last_name}}
+
+    <br/>
+	<br/>
+    
+    <div ng-controller="CollapseDemoCtrl">
+	<button class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Add a Bill</button>
+	
+	<div collapse="!isCollapsed">
+	<br/>
+		<div class="well well-lg">
+			<form>
+				Bill
+				<input type="text" class="form-control" placeholder="Title" ng-model="title">
+				<br/>
+				Price
+				<input type="text" class="form-control" placeholder="Price" ng-model="price" >
+				<br/>
+				Description
+				<textarea class="form-control" rows="2" placeholder="Description" ng-model="description"></textarea>
+				<br/>
+				<button class="btn btn-primary"  value="save" ng-click="addBill(title, price, description, item)">OK</button>
+	            <button class="btn btn-warning"  value="cancel" ng-click="cancel()">Cancel</button>
+	        </form>
+
+		</div> 
+	</div>
+	</div>
+
+    <!--<em class="pull-right">
+      <div class="btn-group">
+        <button class="btn btn-default" ng-click="open()">Add a bill to {{item.first_name}}</button>
+
+      </div>
+    </em>
+-->
+
+  </li>
+
+
+</ul>
+
+
+
+<p><a href="#" ng-click="logout()">logout</a></p>

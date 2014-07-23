@@ -33,34 +33,49 @@ angular.module( 'ngBoilerplate.home', [
   });
 })
 
-.controller( 'HomeCtrl', function HomeController( $scope, $rootScope, $firebase) {
+.controller( 'HomeCtrl', function HomeController( $scope, $rootScope, $firebase, $state) {
 
 
-
-  //var userRef = new Firebase('https://boiling-fire-6744.firebaseio.com/users').child($rootScope.user.id);
-  //$scope.user = $firebase(userRef);
+  var ref1 = new Firebase("https://boiling-fire-6744.firebaseio.com/groups/transactions/10100564121867105");
   
+
+
+
+
+  var ref = new Firebase('https://boiling-fire-6744.firebaseio.com/groups/'+$rootScope.user.id+'/group');
+  console.log(ref);
+  $rootScope.usersGroup = $firebase(ref);
+    
   var done = $rootScope.$watch('user.id', function(id) {
     if (id) {
-      $scope.user = $firebase(new Firebase('https://boiling-fire-6744.firebaseio.com//users/'+$rootScope.user.id+'/'));
+      $scope.user = $firebase(new Firebase('https://boiling-fire-6744.firebaseio.com/users/'+$rootScope.user.id+'/'));
       done();
     }
   });  
 
   $scope.logout=function(){
   console.log('logout biatch');
-  $rootScope.auth.$logout();      
-    
+  $rootScope.auth.$logout();   
+  
+};
 
 
+  $scope.delItem  = function (item) {
+      // Get the Firebase reference of the item
+      console.log("deleting item");
+      var itemRefForDel = new Firebase('https://boiling-fire-6744.firebaseio.com/groups/' + $rootScope.user.id + '/group/' + item.id);
 
 
-  };
+      $firebase(itemRefForDel).$remove({
+          name : item.name,
+          id : item.id,
+          info : item.picture.data
+      });
+
+    };
 
 
-}
-
-);
+});
 
 
 

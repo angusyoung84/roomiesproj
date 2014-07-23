@@ -1,0 +1,43 @@
+
+<br/>
+<br/>
+<br/>
+
+
+<p align="center"><img ng-src="{{ user.picture.data.url }}" /></p>
+
+<h2 align="center">Create your group, {{user.first_name}}.</h2>
+  
+<p><a href="#" ui-sref="home">Home</a></p>
+
+<div ng-controller="CollapseDemoCtrl">
+<button class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Add a Group</button>
+
+
+<div collapse="!isCollapsed">
+<br/>
+<div class="well well-lg">
+	<form>
+		<input type="text" class="form-control" placeholder="Group Name" ng-model="name">
+		<br/>
+		<ul class="list-group" style="width=50%" ng-repeat="item in items" ng-if="item.id != user.id">
+			<li class="list-group-item">
+				{{item.first_name}} {{item.last_name}}		
+				<em class="pull-right">
+	      			<div class="btn-group">
+	      				<p><a href="#"  ng-click="addItem(item)" ui-sref="home">Add</a></p>
+	      			</div>
+	    		</em>
+	    	</li>
+		</ul>
+		<button class="btn btn-primary"  value="save" ng-click="addGroup(name, item.id)">OK</button>
+        <button class="btn btn-warning"  value="cancel" ng-click="cancel()">Cancel</button>
+    </form>
+
+</div> 
+</div>
+
+
+<br/>
+
+<p><a href="#" ng-click="logout()">logout</a></p>

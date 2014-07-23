@@ -8,6 +8,9 @@ angular.module( 'ngBoilerplate', [
  'ngBoilerplate.home',
  'ngBoilerplate.about',
  'ngBoilerplate.login', 
+ 'ngBoilerplate.group',  
+ 'ngBoilerplate.bill',
+ 'ngBoilerplate.addgroup',        
  'firebase', 
  'ui.router'
 ])
@@ -67,8 +70,8 @@ angular.module( 'ngBoilerplate', [
 
       }else{ 
         console.log('does exist');
-        $rootScope.roomies = snapshot.val().roomies;
-        console.log($rootScope.roomies);
+        //$rootScope.roomies = snapshot.val().roomies;
+       // console.log($rootScope.roomies);
         $state.go('home');
       }
     });   
@@ -101,6 +104,8 @@ angular.module( 'ngBoilerplate', [
     $rootScope.user = null;
     return $state.go('login');
   });
+
+
   
 
 })
